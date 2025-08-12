@@ -112,6 +112,8 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
     hec_channel: str = ""
     all_indexes_on_server: list[str] = []
     _conn: client.Service = PrivateAttr()
+    # Added this flag to delay unit test run time
+    _data_model_delay_complete: bool = PrivateAttr(default=False) 
     pbar: tqdm.tqdm = None
     start_time: Optional[float] = None
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -738,6 +740,14 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
         """
         # Capture unit test start time
         test_start_time = time.time()
+
+         # WORKAROUND: Introduce a one-time delay to allow for Splunk Data Model
+         # Acceleration. This prevents a race condition where tstats-based searches
+         # run before the test data has been summarised.
+        if not self._data_model_delay_complete:
+            self.pbar.write("WAITING for 8 minutes for Data Model Acceleration...")
+            time.sleep(480) # 8 minutes
+            self._data_model_delay_complete = True
 
         # First, check to see if this test has been skipped; log and return if so
         if test.result is not None and test.result.status == TestResultStatus.SKIP:
@@ -1495,7 +1505,7 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
         # for trailing /, etc, but we leave that for the future)
         url_with_port = f"{address_with_scheme}:{self.infrastructure.hec_port}"
         url_with_hec_path = urllib.parse.urljoin(
-            url_with_port, "services/collector/raw"
+            url_with_port, "services/collector/event"
         )
         with open(tempfile, "rb") as datafile:
             try:

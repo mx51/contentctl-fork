@@ -621,20 +621,22 @@ class Detection_Abstract(SecurityContentObject):
             # No additional check need to happen on the potential drilldowns.
             pass
         else:
-            found_placeholder = False
-            if len(self.drilldown_searches) < 2:
-                raise ValueError(
-                    f"This detection is required to have 2 drilldown_searches, but only has [{len(self.drilldown_searches)}]"
-                )
-            for drilldown in self.drilldown_searches:
-                if DRILLDOWN_SEARCH_PLACEHOLDER in drilldown.search:
-                    found_placeholder = True
-            if not found_placeholder:
-                raise ValueError(
-                    "Detection has one or more drilldown_searches, but none of them "
-                    f"contained '{DRILLDOWN_SEARCH_PLACEHOLDER}. This is a requirement "
-                    "if drilldown_searches are defined.'"
-                )
+            pass
+        # Commenting out this block of code to remove the requirement to add 2 drilldown searches for each detection since only it only works within the ES "Notable Event" system and we don't use ES.
+        #    found_placeholder = False
+        #   if len(self.drilldown_searches) < 2:
+        #        raise ValueError(
+        #           f"This detection is required to have 2 drilldown_searches, but only has [{len(self.drilldown_searches)}]"
+        #       )
+        #    for drilldown in self.drilldown_searches:
+        #       if DRILLDOWN_SEARCH_PLACEHOLDER in drilldown.search:
+        #            found_placeholder = True
+        #    if not found_placeholder:
+        #       raise ValueError(
+        #           "Detection has one or more drilldown_searches, but none of them "
+        #           f"contained '{DRILLDOWN_SEARCH_PLACEHOLDER}. This is a requirement "
+        #           "if drilldown_searches are defined.'"
+        #        )
 
         # Update the search fields with the original search, if required
         for drilldown in self.drilldown_searches:

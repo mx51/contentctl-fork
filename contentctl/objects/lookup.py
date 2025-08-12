@@ -279,9 +279,7 @@ class CSVLookup(FileBackedLookup):
         CSV and MLmodel requirements are different.
         """
 
-        return pathlib.Path(
-            f"{self.name}_{self.date.year}{self.date.month:02}{self.date.day:02}.{self.lookup_type}"
-        )
+        return pathlib.Path(f"{self.name}.{self.lookup_type}")
 
     @model_validator(mode="after")
     def ensure_correct_csv_structure(self) -> Self:

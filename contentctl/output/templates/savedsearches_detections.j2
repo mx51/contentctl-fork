@@ -77,7 +77,7 @@ counttype = number of events
 relation = greater than
 quantity = 0
 realtime_schedule = 0
-is_visible = false
+is_visible = true
 {% if detection.tags.throttling %}
 alert.suppress = true
 alert.suppress.fields = {{ detection.tags.throttling.conf_formatted_fields() }}
