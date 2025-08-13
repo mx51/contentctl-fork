@@ -6,7 +6,7 @@
 > Looking to migrate from an earlier release to the new contentctl v5+ ? Check out our migration guide [here](docs/contentctl_v5_migration_guide.md). 
 
 ## What is contentctl?
-`contentctl` is a tool developed by the Splunk Threat Research Team to help with managing the content living in [splunk/security_content](https://github.com/splunk/security_content) and producing the Enterprise Security Content Update app for Splunk. While its development is largely driven by STRT's needs, it has been somewhat genericized and can be used by customers and partners to package their own content. Simply put, `contentctl` is the workhorse that packages detections, macros, lookups, dashboards into a Splunk app that you can use, and that understands the YAML structure and project layout we've selected to keep development clean.
+`contentctl` is a tool developed by the Splunk Threat Research Team to help with managing the content living in [splunk/security_content](https://github.com/splunk/security_content) and producing the Enterprise Security Content Update app for Splunk. While its development is largely driven by STRT's needs, it can be used by customers and partners to package their own content. Simply put, `contentctl` is the workhorse that packages detections, macros, lookups, dashboards into a Splunk app that you can use, and that understands the YAML structure and project layout we've selected to keep development clean.
 
 ## Quick Start Guide
 Check out our [User Guide](docs/UserGuide.md) to get started!
