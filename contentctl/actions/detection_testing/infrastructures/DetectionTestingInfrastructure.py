@@ -746,7 +746,7 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
          # run before the test data has been summarised.
         if not self._data_model_delay_complete:
             self.pbar.write("WAITING for 10 minutes for Data Model Acceleration...")
-            time.sleep(600) # 10 minutes
+            time.sleep(2) # 10 minutes
             self._data_model_delay_complete = True
 
         # First, check to see if this test has been skipped; log and return if so
