@@ -121,7 +121,7 @@ DOWNLOADS_DIRECTORY = "downloads"
 # The math below accounts for all these caveats
 ES_MAX_STANZA_LENGTH = 99
 CONTENTCTL_DETECTION_STANZA_NAME_FORMAT_TEMPLATE = (
-    "{app_label} - {detection_name} - Rule"
+    "{app_label} - {detection_name}"
 )
 
 CONTENTCTL_BASELINE_STANZA_NAME_FORMAT_TEMPLATE = "{app_label} - {detection_name}"
