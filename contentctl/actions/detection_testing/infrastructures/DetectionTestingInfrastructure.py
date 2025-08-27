@@ -113,7 +113,8 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
     all_indexes_on_server: list[str] = []
     _conn: client.Service = PrivateAttr()
     # Added this flag to delay unit test run time
-    _data_model_delay_complete: bool = PrivateAttr(default=False) 
+    # Converted detection to manual test so no need for this unless revisted in the future. Commenting out!
+    # _data_model_delay_complete: bool = PrivateAttr(default=False) 
     pbar: tqdm.tqdm = None
     start_time: Optional[float] = None
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -743,11 +744,12 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
 
          # WORKAROUND: Introduce a one-time delay to allow for Splunk Data Model
          # Acceleration. This prevents a race condition where tstats-based searches
-         # run before the test data has been summarised.
-        if not self._data_model_delay_complete:
-            self.pbar.write("WAITING for 10 minutes for Data Model Acceleration...")
-            time.sleep(2) # 10 minutes
-            self._data_model_delay_complete = True
+         # run before the test data has been summarised. 
+         # Converted detection to manual test so no need for this unless revisted in the future. Commenting out!
+         # if not self._data_model_delay_complete:
+            # self.pbar.write("WAITING for 10 minutes for Data Model Acceleration...")
+            # time.sleep(600) # 10 minutes
+            # self._data_model_delay_complete = True
 
         # First, check to see if this test has been skipped; log and return if so
         if test.result is not None and test.result.status == TestResultStatus.SKIP:
