@@ -55,8 +55,6 @@ action.email.subject.alert = {{ detection.deployment.alert_action.email.subject 
 action.email.to = {{ detection.deployment.alert_action.email.to }}
 action.email.message.alert = {{ detection.deployment.alert_action.email.message | custom_jinja2_enrichment_filter(detection) | escapeNewlines() }}
 action.email.useNSSubject = 1
-action.email.sendresults = 1
-action.email.format = "csv"
 {% endif %}
 {% if detection.deployment.alert_action.slack %}
 action.slack = 1
