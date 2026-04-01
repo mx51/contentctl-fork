@@ -114,7 +114,7 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
     _conn: client.Service = PrivateAttr()
     # Added this flag to delay unit test run time
     # Converted detection to manual test so no need for this unless revisted in the future. Commenting out!
-    # _data_model_delay_complete: bool = PrivateAttr(default=False) 
+    # _data_model_delay_complete: bool = PrivateAttr(default=False)
     pbar: tqdm.tqdm = None
     start_time: Optional[float] = None
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -744,7 +744,7 @@ class DetectionTestingInfrastructure(BaseModel, abc.ABC):
 
          # WORKAROUND: Introduce a one-time delay to allow for Splunk Data Model
          # Acceleration. This prevents a race condition where tstats-based searches
-         # run before the test data has been summarised. 
+         # run before the test data has been summarised.
          # Converted detection to manual test so no need for this unless revisted in the future. Commenting out!
          # if not self._data_model_delay_complete:
             # self.pbar.write("WAITING for 10 minutes for Data Model Acceleration...")

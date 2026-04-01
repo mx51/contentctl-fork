@@ -38,7 +38,7 @@ from contentctl.objects.constants import (
 from contentctl.objects.data_source import DataSource
 from contentctl.objects.deployment import Deployment
 from contentctl.objects.detection_tags import DetectionTags
-from contentctl.objects.drilldown import DRILLDOWN_SEARCH_PLACEHOLDER, Drilldown
+from contentctl.objects.drilldown import Drilldown
 from contentctl.objects.enums import (
     AnalyticsType,
     ContentStatus,
