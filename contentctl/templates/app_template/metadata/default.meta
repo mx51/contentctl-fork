@@ -4,7 +4,7 @@ access = read : [ * ], write : [ admin, sc_admin ]
 export = system
 
 [savedsearches]
-owner = admin
+owner = nobody
 
 ## DO NOT EXPORT THE [default] stanza, and the [default] stanza alone.
 ## Because this comes later in the default.meta file, it overrides the
