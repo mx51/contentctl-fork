@@ -1,66 +1,15 @@
-# ============================================================================
-# 🛡️ MX51 CENTRALISED SECURITY TEMPLATE: CodeQL
-# ============================================================================
-# This is the master Reusable Workflow for GitHub Advanced Security (CodeQL).
-# It is centrally maintained by the Security team and called dynamically by 
-# other repositories across the mx51 organization.
-#
-# TRIGGERS:
-# - workflow_call: Allows downstream repositories to use this template.
-# - schedule: Runs the weekly scan on this repository.
-# - workflow_dispatch: Allows manual test runs on this repository.
-# ============================================================================
 name: "CodeQL"
 
 on:
-  workflow_call:
   schedule:
     - cron: '30 22 * * 2'
   workflow_dispatch:
 
 jobs:
-  create-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.languages }}
-    steps:
-      - name: Get languages from repo
-        id: set-matrix
-        uses: advanced-security/set-codeql-language-matrix@v1
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          endpoint: ${{ github.event.repository.languages_url }}
-
-  analyze:
-    needs: create-matrix
-    if: ${{ needs.create-matrix.outputs.matrix != '[]' }}
-    name: Analyze
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ${{ fromJSON(needs.create-matrix.outputs.matrix) }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          config-file: ./.github/codeql-config.yml
-          languages: ${{ matrix.language }}
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
-        with:
-          category: "/language:${{matrix.language}}"
+  run-security-scan:
+    uses: mx51/github-security-automation/.github/workflows/codeql.yml@main
+    # Uncomment and modify the lines below ONLY if the repo requires manual compilation
+    # with:
+    #   runner_size: "ubuntu-latest-4core" 
+    #   build_command: "./gradlew clean build"
+    secrets: inherit
