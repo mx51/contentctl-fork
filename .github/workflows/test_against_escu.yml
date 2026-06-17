@@ -62,6 +62,7 @@ jobs:
       - name: Run contentctl build
         run: |
           cd security_content
+          mkdir -p deployments
           poetry run contentctl build --enrichments
       # Do not run a test - it will take far too long!
       # Do not upload any artifacts
