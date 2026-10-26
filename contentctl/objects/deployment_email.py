@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from pydantic import BaseModel, ConfigDict
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DeploymentEmail(BaseModel):
@@ -8,3 +10,10 @@ class DeploymentEmail(BaseModel):
     message: str
     subject: str
     to: str
+    # Results are sent inline as a table in the email body by default, rather than
+    # as a CSV attachment. Each detection may override these.
+    sendresults: bool = True
+    inline: bool = True
+    format: Literal["table", "raw", "csv", "plain"] = "table"
+    sendcsv: bool = False
+    maxresults: int = Field(default=50, ge=1)
