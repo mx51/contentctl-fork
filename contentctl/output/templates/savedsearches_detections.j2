@@ -61,9 +61,11 @@ action.email.subject.alert = {{ detection.deployment.alert_action.email.subject 
 action.email.to = {{ detection.deployment.alert_action.email.to }}
 action.email.message.alert = {{ detection.deployment.alert_action.email.message | custom_jinja2_enrichment_filter(detection) | escapeNewlines() }}
 action.email.useNSSubject = 1
-action.email.sendresults = 1
-action.email.format = "csv"
-action.email.sendcsv = 1
+action.email.sendresults = {{ 1 if detection.deployment.alert_action.email.sendresults else 0 }}
+action.email.inline = {{ 1 if detection.deployment.alert_action.email.inline else 0 }}
+action.email.format = {{ detection.deployment.alert_action.email.format }}
+action.email.sendcsv = {{ 1 if detection.deployment.alert_action.email.sendcsv else 0 }}
+action.email.maxresults = {{ detection.deployment.alert_action.email.maxresults }}
 {% endif %}
 {% if detection.deployment.alert_action.slack %}
 action.slack = 1
