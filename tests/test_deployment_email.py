@@ -41,7 +41,7 @@ def test_defaults_send_results_inline_as_plain():
         "action.email = 1",
         "action.email.sendresults = 1",
         "action.email.inline = 1",
-        "action.email.format = plain",
+        "action.email.format = csv",
         "action.email.sendcsv = 0",
         "action.email.maxresults = 50",
     ]:
