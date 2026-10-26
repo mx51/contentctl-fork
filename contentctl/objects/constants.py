@@ -122,9 +122,7 @@ DOWNLOADS_DIRECTORY = "downloads"
 # Endpoint - ESCU - Name of Search From YML File - Rule - Rule
 # The math below accounts for all these caveats
 ES_MAX_STANZA_LENGTH = 99
-CONTENTCTL_DETECTION_STANZA_NAME_FORMAT_TEMPLATE = (
-    "{app_label} - {detection_name}"
-)
+CONTENTCTL_DETECTION_STANZA_NAME_FORMAT_TEMPLATE = "{app_label} - {detection_name}"
 
 CONTENTCTL_BASELINE_STANZA_NAME_FORMAT_TEMPLATE = "{app_label} - {detection_name}"
 CONTENTCTL_RESPONSE_TASK_NAME_FORMAT_TEMPLATE = (
