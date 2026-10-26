@@ -14,6 +14,6 @@ class DeploymentEmail(BaseModel):
     # as a CSV attachment. Each detection may override these.
     sendresults: bool = True
     inline: bool = True
-    format: Literal["table", "raw", "csv", "plain"] = "table"
+    format: Literal["table", "raw", "csv", "plain"] = "plain"
     sendcsv: bool = False
     maxresults: int = Field(default=50, ge=1)
