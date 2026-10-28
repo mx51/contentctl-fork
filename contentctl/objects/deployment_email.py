@@ -10,7 +10,7 @@ class DeploymentEmail(BaseModel):
     message: str
     subject: str
     to: str
-    # Results are sent inline as a table in the email body by default, rather than
+    # Results are sent inline as CSV text in the email body by default, rather than
     # as a CSV attachment. Each detection may override these.
     sendresults: bool = True
     inline: bool = True
