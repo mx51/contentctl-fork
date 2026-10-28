@@ -10,8 +10,8 @@ class DeploymentEmail(BaseModel):
     message: str
     subject: str
     to: str
-    # Results are sent inline as plain text in the email body by default, rather
-    # than as a CSV attachment. Each detection may override these.
+    # Results are sent inline as CSV text in the email body by default, rather than
+    # as a CSV attachment. Each detection may override these.
     sendresults: bool = True
     inline: bool = True
     format: Literal["table", "raw", "csv", "plain"] = "csv"
