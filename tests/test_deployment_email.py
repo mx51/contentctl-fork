@@ -35,7 +35,7 @@ def render_email_block(email: DeploymentEmail) -> list[str]:
     return template.render(detection=detection).splitlines()
 
 
-def test_defaults_send_results_inline_as_plain():
+def test_defaults_send_results_inline_as_table():
     lines = render_email_block(DeploymentEmail(**REQUIRED))
     for expected in [
         "action.email = 1",
